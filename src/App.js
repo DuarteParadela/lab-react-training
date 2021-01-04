@@ -153,9 +153,11 @@ function App() {
         birth={new Date('1988-05-11')}
         picture="https://randomuser.me/api/portraits/women/44.jpg"
       />
-      {idCards.map((person) => {
+
+      {/* Another shorter way to display  */}
+      {/* {idCards.map((person) => {
         return <IdCard key={person.firstName} {...person} />;
-      })}
+      })} */}
       <Greetings lang="de">Ludwig</Greetings>
       <Greetings lang="fr">François</Greetings>
       <Greetings lang="en">Virginie</Greetings>
