@@ -1,120 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-function IdCard(props) {
-  return (
-    <div className="id-container">
-      <img src={props.picture} />
-      <div className="id-list">
-        {' '}
-        <p>First name : {props.firstName}</p>
-        <p>Last name : {props.lastName}</p>
-        <p>Gender : {props.gender}</p>
-        <p> Height: {props.height}</p>
-        <p>Birth : {props.birth.toDateString()}</p>
-      </div>
-    </div>
-  );
-}
-
-function Greetings(props) {
-  let language = 'hello';
-  switch (props.lang) {
-    case 'de':
-      language = 'Hallo';
-      break;
-    case 'fr':
-      language = 'Bonjour';
-      break;
-    case 'es':
-      language = 'Hola';
-      break;
-    default:
-      language = 'Hello';
-      break;
-  }
-  return (
-    <div>
-      <p>
-        {language} {props.children}
-      </p>
-    </div>
-  );
-}
-
-function Random(props) {
-  const min = props.min;
-  const max = props.max;
-  const random = Math.floor(Math.random() * (max - min + 1) + min);
-
-  return (
-    <div>
-      <p>
-        Random value between {min} and {max} =>
-        {random}
-      </p>
-    </div>
-  );
-}
-
-function BoxColor(props) {
-  const r = props.r;
-  const g = props.g;
-  const b = props.b;
-
-  const divStyle = {
-    backgroundColor: `rgb(${r},${g},${b})`,
-    border: `1px solid black`,
-  };
-
-  function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? '0' + hex : hex;
-  }
-
-  function rgbToHex(r, g, b) {
-    return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
-  }
-
-  return (
-    <div>
-      <p style={divStyle}>
-        rgb({r},{g},{b}){rgbToHex(r, g, b)}
-      </p>
-    </div>
-  );
-}
-
-function CreditCard(props) {
-  const hexColor = props.bgColor;
-  const textColor = props.color;
-  const number = props.number.replace(/\d(?=\d{4})/g, '*');
-  const divStyle = {
-    backgroundColor: hexColor,
-    borderRadius: `5%`,
-    color: textColor,
-  };
-  return (
-    <div className="credit-card" style={divStyle}>
-      <div className="bank-logo">
-        <p>{props.type}</p>
-      </div>
-      <div className="number-container">
-        <p className="number">{number}</p>
-      </div>
-
-      <div className="info">
-        <p>
-          Expires {props.expirationMonth}/{props.expirationYear}
-        </p>
-        <p>
-          {props.owner} {props.bank}
-        </p>
-      </div>
-    </div>
-  );
-}
+import Greetings from './components/Greetings';
+import IdCard from './components/IdCard';
+import Random from './components/Random';
+import BoxColor from './components/BoxColor';
+import CreditCard from './components/CreditCard';
+import Rating from './components/Rating';
+import DriverCard from './components/DriverCard';
+import LikeButton from './components/LikeButton';
+import ClickablePicture from './components/ClickablePicture';
 
 function App() {
   const idCards = [
@@ -175,6 +69,32 @@ function App() {
         bgColor="#11aa99"
         color="white"
       />
+      <h2 className="App__title">6. Rating</h2>
+      <Rating>0</Rating>
+      <Rating>1.49</Rating>
+      <Rating>1.5</Rating>
+      <Rating>3</Rating>
+      <Rating>4</Rating>
+      <Rating>5</Rating>
+      <DriverCard
+        name="Travis Kalanick"
+        rating={4.2}
+        img="https://si.wsj.net/public/resources/images/BN-TY647_37gql_OR_20170621052140.jpg?width=620&height=428"
+        car={{
+          model: 'Toyota Corolla Altis',
+          licensePlate: 'CO42DE',
+        }}
+      />
+      <DriverCard
+        name="Dara Khosrowshahi"
+        rating={4.9}
+        img="https://ubernewsroomapi.10upcdn.com/wp-content/uploads/2017/09/Dara_ELT_Newsroom_1000px.jpg"
+        car={{
+          model: 'Audi A3',
+          licensePlate: 'BE33ER',
+        }}
+      />
+      <LikeButton></LikeButton>
     </div>
   );
 }

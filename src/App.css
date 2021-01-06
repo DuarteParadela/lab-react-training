@@ -34,3 +34,8 @@
 .number {
   font-size: 2rem;
 }
+
+.driver-card img {
+  width: 10%;
+  height: auto;
+}
